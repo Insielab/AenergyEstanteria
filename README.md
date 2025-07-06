@@ -1,42 +1,41 @@
-# aenergy_core.rb - Proyecto Aenergy v1.0
+# Aenergy v.1.2
 
 ---
 
-## Descripción
+## Declaración Inicial
 
-**aenergy_core.rb** es el núcleo del proyecto Aenergy, desarrollado por **Insielab** para la **Estantería Digital de Papalotla**. Su función principal es **crear fichas JSON estandarizadas** a partir de datos ingresados por el usuario, que servirán como registros digitales de documentos, imágenes, audios y otros materiales.
+**Aenergy** es el motor digital desarrollado por **Insielab** para la **Estantería Digital de Papalotla**.
 
-Cada ficha generada contiene metadatos esenciales para organizar y preservar la memoria histórica y cultural de Papalotla.
+Su propósito es **preservar, organizar y dar vida a la memoria histórica y cultural de Papalotla**, convirtiendo documentos físicos, datos estadísticos y registros comunitarios en archivos digitales normalizados y visualizaciones interactivas.
+
+Aunque hoy opera principalmente en back office, Aenergy está diseñado para convertirse en **la base tecnológica visible de la Estantería Digital**, accesible a toda la comunidad.
 
 ---
 
-## Características
+## Qué es Aenergy
 
-- Solicita interactivamente:
-  - Autor
-  - Título
-  - Año de publicación
-  - Categoría (nombre completo)
-  - Código corto de la categoría
-  - Formato del archivo (PDF, MD, HTML, JPG, MP3)
-  - Tipo de almacenamiento (interno o externo)
-  - URL del archivo si es externo
+Aenergy es un proyecto Ruby compuesto por tres grandes módulos:
 
-- Genera:
-  - **Folio único** basado en:
-    - Año
-    - Iniciales del autor
-    - Primera palabra del título
-    - Código corto de la categoría
-
-- Crea un archivo JSON estructurado con todos los metadatos.
-
+✅ **Core (aenergy_core.rb)**  
+- Solicita datos interactivamente.  
+- Genera fichas JSON con metadatos normalizados.  
+- Guarda las fichas en `/fichas`.  
 - Muestra un resumen en consola en formato Markdown.
 
-- Guarda cada ficha JSON en la carpeta:
-```
-/fichas
-```
+✅ **Auditor (aenergy_auditor.rb)**  
+- Lee todas las fichas JSON.  
+- Genera reportes consolidados en Markdown.  
+- Cuenta:
+  - Total de fichas.
+  - Distribución por año, formato, categoría.
+  - Internos vs. externos.
+- Guarda los reportes en `/reportes` y registra logs en `/logs`.
+
+✅ **Geogenerator (aenergy_geo.rb)**  
+- Procesa datos CSV y plantillas ERB.  
+- Ejecuta el core para generar la ficha JSON.  
+- Mueve la ficha generada a `/geogenerator/fichas`.  
+- Renderiza HTML dinámico en `/geogenerator/output`.
 
 ---
 
@@ -46,112 +45,122 @@ Cada ficha generada contiene metadatos esenciales para organizar y preservar la 
 
 ### Gems utilizadas:
 - json
-- securerandom
+- csv
+- erb
+- fileutils
 - date
 - time
+- securerandom
+
+*(Todas forman parte de la biblioteca estándar de Ruby.)*
 
 ---
 
-## Cómo usarlo
+## Estructura de Carpetas
 
-Ejecuta el script directamente en terminal:
+```
+Insielab/
+├── fichas/
+│     └── *.json
+├── logs/
+│     └── generacion_reportes.log
+├── reportes/
+│     └── reporte-YYYYMMDD-HHMM.md
+├── geogenerator/
+│     ├── datos/
+│     │     └── *.csv
+│     ├── fichas/
+│     │     └── *.json
+│     ├── output/
+│     │     └── *.html
+│     ├── plantillas/
+│     │     └── *.erb
+│     └── procesadores/
+│           └── *.rb
+├── aenergy_core.rb
+├── aenergy_auditor.rb
+├── aenergy_geo.rb
+└── README.md
+```
+
+---
+
+## Cómo usar Aenergy
+
+### 1. Generar una ficha JSON (Core)
+
+Ejecuta:
 
 ```
 ruby aenergy_core.rb
 ```
 
-Se solicitarán los datos uno por uno. Al finalizar:
-
-- Se creará un archivo JSON en:
-```
-/fichas/{folio}.json
-```
-
-- Se imprimirá un resumen en consola en forma de tabla Markdown.
+- Te pedirá los datos uno a uno.
+- Guardará el JSON en `/fichas/`.
+- Mostrará un resumen Markdown en consola.
 
 ---
 
-## Ejemplo de ejecución
+### 2. Auditar fichas existentes
 
-### Datos de entrada:
+Ejecuta:
 
 ```
-Autor: María López
-Título: Historia de Papalotla
-Año de publicación (YYYY): 2022
-Categoría (nombre completo): Historia Regional
-Código corto de la categoría (ej: DH): HR
-Formato del archivo: PDF
-¿El archivo es de propiedad o licencia interna del proyecto? (sí/no): no
-URL del archivo externo: https://mipapalotla.com/docs/historia.pdf
+ruby aenergy_auditor.rb
 ```
 
-### Resultado:
+- Generará un reporte en Markdown en `/reportes/`.
+- Registrará logs en `/logs/`.
 
-- Archivo generado:
+---
+
+### 3. Generar un documento HTML (Geogenerator)
+
+Ejecuta:
+
+```
+ruby aenergy_geo.rb
+```
+
+- Te pedirá qué tipo de documento quieres generar.
+- Procesará el CSV correspondiente.
+- Ejecutará el core automáticamente.
+- Moverá la ficha a `/geogenerator/fichas/`.
+- Creará un archivo HTML dinámico en `/geogenerator/output/`.
+
+---
+
+## Ejemplo de flujo completo
+
+1. Ejecutas `ruby aenergy_core.rb` y generas una ficha JSON:
 ```
 /fichas/20220101-ML-Historia-HR.json
 ```
 
-- Resumen mostrado en consola:
-
+2. Ejecutas `ruby aenergy_auditor.rb` y obtienes un reporte:
 ```
-|Campo|Valor|
-|--|--|
-|**Título**|Historia de Papalotla|
-|**Folio**|20220101-ML-Historia-HR|
-|**Año**|2022|
-|**Categoría**|Historia Regional|
-|**Fecha de indexación**|2025-07-06T14:20:58Z|
-|**Almacenamiento**|externo|
+/reportes/reporte-20250706-1445.md
 ```
 
----
-
-## Formatos válidos
-
-- PDF
-- MD
-- HTML
-- JPG
-- MP3
-
----
-
-## Estructura del JSON generado
-
-Ejemplo de salida:
-
-```json
-{
-  "folio": "20220101-ML-Historia-HR",
-  "autor": "María López",
-  "titulo": "Historia de Papalotla",
-  "anio": "2022",
-  "categoria": "Historia Regional",
-  "codigo_categoria": "HR",
-  "formato": "PDF",
-  "tipo_almacenamiento": "externo",
-  "url_azure_blob": "https://mipapalotla.com/docs/historia.pdf",
-  "creado_por": "Proyecto aenergy",
-  "fecha_de_registro": "2025-07-06T14:20:58Z",
-  "descripcion": "Ficha generada automáticamente para la Estantería Digital de Papalotla. Basada en entrada del usuario.",
-  "version_ficha": "1.3"
-}
+3. Ejecutas `ruby aenergy_geo.rb` y produces:
+```
+/geogenerator/output/20220101-ML-Historia-HR.html
 ```
 
 ---
 
 ## Notas
 
-- Los folios siempre generan la fecha como `YYYY0101` (1 de enero) para mantener consistencia en el patrón.
-- Si el archivo es externo, **la URL es obligatoria**.
-- La versión actual es **1.3**.
+- Las carpetas `fichas/`, `logs/`, `reportes/`, y todas las subcarpetas de `geogenerator/` se crean automáticamente si no existen.
+- El nombre del archivo de reporte incluye la fecha y hora UTC.
+- Los folios siempre usan el patrón `YYYY0101` (1 de enero) para estandarizar claves.
+- Si un archivo es externo, se solicita obligatoriamente la URL.
 
 ---
 
 ## Autor
 
-Desarrollado por:
+Desarrollado en Papalotla de Xicohténcatl, Tlaxcala, México por:
+**Estantería Digital de Papalotla**
 **Insielab**  
-Papalotla de Xicohténcatl, Tlaxcala, México
+
