@@ -1,0 +1,15 @@
+{
+  "folio": "20250101-EDDP-Historia-HC",
+  "autor": "Estanería Digital de Papalotla",
+  "titulo": "Historia mínima de la Comunidad Judía en Papalotla",
+  "anio": "2025",
+  "categoria": "Historias y costumbres",
+  "codigo_categoria": "HC",
+  "formato": "MD",
+  "tipo_almacenamiento": "interno",
+  "url_azure_blob": "https://estanteriaaenergy.blob.core.windows.net/archivo/HC-JD.txt",
+  "creado_por": "Proyecto aenergy",
+  "fecha_de_registro": "2025-05-01T19:08:52Z",
+  "descripcion": "Ficha generada automáticamente para la Estantería Digital de Papalotla. Basada en entrada del usuario.",
+  "version_ficha": "1.3"
+}

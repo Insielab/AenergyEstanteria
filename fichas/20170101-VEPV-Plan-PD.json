@@ -1,0 +1,15 @@
+{
+  "folio": "20170101-VEPV-Plan-PD",
+  "autor": "Viridiana Elizabeth Ponce Vilchis",
+  "titulo": "Plan de desarrollo de artesanías para el municipio de Papalotla",
+  "anio": "2017",
+  "categoria": "Planes de desarrollo",
+  "codigo_categoria": "PD",
+  "formato": "PDF",
+  "tipo_almacenamiento": "externo",
+  "url_azure_blob": "https://estanteriaaenergy.blob.core.windows.net/archivo/Plan-Desarrollo-Artesanos.pdf",
+  "creado_por": "Proyecto aenergy",
+  "fecha_de_registro": "2025-06-18T03:28:53Z",
+  "descripcion": "Ficha generada automáticamente para la Estantería Digital de Papalotla. Basada en entrada del usuario.",
+  "version_ficha": "1.3"
+}

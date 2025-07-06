@@ -1,0 +1,15 @@
+{
+  "folio": "20250101-I-Topografa-MG",
+  "autor": "Insielab",
+  "titulo": "Topografía del Cerro de la Luna - Papalotla (TopoExport, 2025)",
+  "anio": "2025",
+  "categoria": "Mapas y recursos gráficos",
+  "codigo_categoria": "MG",
+  "formato": "PDF",
+  "tipo_almacenamiento": "interno",
+  "url_azure_blob": "https://estanteriaaenergy.blob.core.windows.net/archivo/topografia_cerro_luna_2025.pdf",
+  "creado_por": "Proyecto aenergy",
+  "fecha_de_registro": "2025-06-25T03:57:32Z",
+  "descripcion": "Ficha generada automáticamente para la Estantería Digital de Papalotla. Basada en entrada del usuario.",
+  "version_ficha": "1.3"
+}

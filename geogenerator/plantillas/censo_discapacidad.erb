@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @titulo %></title>
+  <link rel="stylesheet" href="../estilos/defunciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1><%= @titulo %></h1>
+
+  <canvas id="grafico" width="800" height="300"></canvas>
+  <script>
+    const ctx = document.getElementById('grafico').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: <%= @labels_json %>,
+        datasets: <%= @datasets_json %>
+      }
+    });
+  </script>
+
+  <br><br>
+  <table>
+    <tr><th>Localidad</th><%= @encabezados_html %></tr>
+    <%= @tabla_html %>
+  </table>
+
+  <br><br>
+  <h2>Ficha de Indexación</h2>
+  <table>
+    <% @ficha_hash.each do |clave, valor| %>
+      <tr>
+        <th><%= clave.gsub("_", " ").capitalize %></th>
+        <td><%= valor.is_a?(Array) ? valor.join(", ") : valor %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <footer>
+    <br><br>
+    Generado por <strong>Aenergy Geogenerator</strong> de Insielab y la Estantería Digital de Papalotla<br>
+    Indexado el <%= Time.parse(@ficha_hash["fecha_de_registro"]).strftime('%-d de %B de %Y') rescue @ficha_hash["fecha_de_registro"] %>
+  </footer>
+</body>
+</html>

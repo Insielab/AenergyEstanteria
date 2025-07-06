@@ -1,0 +1,12 @@
+ENTIDAD,NOM_ENT,MUN,NOM_MUN,LOC,NOM_LOC,PCON_DISC,PCDISC_MOT,PCDISC_VIS,PCDISC_LENG,PCDISC_AUD,PCDISC_MOT2,PCDISC_MEN,PCON_LIMI,PCLIM_CSB,PCLIM_VIS,PCLIM_HACO,PCLIM_OAUD,PCLIM_MOT2,PCLIM_RE_CO,PCLIM_PMEN,PSIND_LIM
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0000,Total del Municipio,1068,465,492,168,270,209,194,3109,873,2065,198,775,180,605,387,28966
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0001,Papalotla,906,412,396,152,236,181,163,2578,731,1696,137,636,128,489,337,24861
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0004,San Marcos Contla,150,50,89,13,31,25,27,517,136,362,61,135,52,116,48,3911
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0014,El Piecito,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0015,San Diego Buenavista,0,0,0,0,0,0,0,2,2,0,0,1,0,0,0,32
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0016,Tepizila,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0017,Xaltonac,11,3,6,3,3,3,4,11,3,7,0,3,0,0,2,146
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0018,Copachigia,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*
+29,Tlaxcala,041,Papalotla de Xicohténcatl,0019,Zacatecoma,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*
+29,Tlaxcala,041,Papalotla de Xicohténcatl,9998,Localidades de una vivienda,1,0,1,0,0,0,0,1,1,0,0,0,0,0,0,10
+29,Tlaxcala,041,Papalotla de Xicohténcatl,9999,Localidades de dos viviendas,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*
