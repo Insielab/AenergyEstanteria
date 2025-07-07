@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nueva Ficha - Aenergy Core</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      flex: 1;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .button {
+      background: #007BFF;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      margin-top: 2rem;
+      width: 100%;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .button:hover {
+      background: #0056b3;
+    }
+    footer {
+      text-align: center;
+      background: #3b429f;
+      color: #eee;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+    footer strong {
+      color: #00bfff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nueva Ficha - Aenergy Core</h1>
+    <form method="POST" action="/fichas" enctype="multipart/form-data">
+      
+      <label for="autor">Autor</label>
+      <input type="text" id="autor" name="autor" required />
+
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" required />
+
+      <label for="anio">Año de publicación (YYYY)</label>
+      <input type="number" id="anio" name="anio" min="1900" max="2100" required />
+
+      <label for="categoria_codigo">Categoría</label>
+      <select id="categoria_codigo" name="categoria_codigo" required>
+        <option value="">-- Selecciona una categoría --</option>
+        <option value="HC">Historias y costumbres</option>
+        <option value="DP">Documentos públicos y transparencia</option>
+        <option value="SP">Salud pública</option>
+        <option value="MR">Mapas y recursos gráficos</option>
+        <option value="PD">Planes de desarrollo</option>
+        <option value="PR">Polémicas y resoluciones</option>
+        <option value="RE">Recursos estadísticos</option>
+        <option value="AM">Archivos musicales</option>
+        <option value="PC">Protección civil</option>
+        <option value="LM">Leyes estatales y municipales</option>
+      </select>
+
+      <label for="formato">Formato</label>
+      <select id="formato" name="formato" required>
+        <option value="">-- Selecciona un formato --</option>
+        <option value="PDF">PDF</option>
+        <option value="MD">MD</option>
+        <option value="HTML">HTML</option>
+        <option value="JPG">JPG</option>
+        <option value="MP3">MP3</option>
+      </select>
+
+      <label>¿El archivo es de propiedad o licencia interna del proyecto?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="tipo_almacenamiento" value="interno" required /> Interno</label>
+        <label><input type="radio" name="tipo_almacenamiento" value="externo" required /> Externo</label>
+      </div>
+
+      <div id="url_blob_section" style="display:none;">
+        <label for="url_blob">URL del archivo externo</label>
+        <input type="url" id="url_blob" name="url_blob" />
+      </div>
+
+      <div id="archivo_section" style="display:none;">
+        <label for="archivo">Archivo a subir</label>
+        <input type="file" id="archivo" name="archivo" accept=".pdf,.md,.html,.jpg,.jpeg,.png,.mp3" />
+      </div>
+
+      <button class="button" type="submit">Generar Ficha</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>
+      Generado con <strong>Aenergy</strong> · Insielab · Papalotla de Xicohténcatl<br/>
+      <em>Estantería Digital de Papalotla.</em>
+    </p>
+  </footer>
+
+  <script>
+    const radios = document.querySelectorAll('input[name="tipo_almacenamiento"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.value === "externo") {
+          document.getElementById("url_blob_section").style.display = "block";
+          document.getElementById("archivo_section").style.display = "none";
+        } else {
+          document.getElementById("url_blob_section").style.display = "none";
+          document.getElementById("archivo_section").style.display = "block";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
